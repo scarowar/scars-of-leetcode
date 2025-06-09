@@ -63,7 +63,7 @@ https://leetcode.com/problems/${SLUG}/
 <!-- Add your space complexity here. -->
 
 ## Notes
-<!-- Any tricky details, edge cases, or key points to remember. -->
+<!-- Any alternate solutions, tricky details, edge cases, or key points to remember. -->
 
 EOF
 
@@ -102,7 +102,11 @@ TEMP_TRACKER="$(mktemp)"
   done | sort -n | while read -r num folder; do
     slug=${folder#*-}
     title=$(echo "$slug" | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
-    echo "| $num | $title | [$folder]($folder) |"
+    rel_folder="${folder}"
+    if [[ "$rel_folder" == problems/* ]]; then
+      rel_folder="${rel_folder#problems/}"
+    fi
+    echo "| $num | $title | [$rel_folder]($rel_folder) |"
   done
 } > "$TEMP_TRACKER"
 
