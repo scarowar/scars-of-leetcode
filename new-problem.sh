@@ -46,8 +46,6 @@ mkdir -p "$DIR"
 cat > "$DIR/README.md" <<EOF
 # Problem $NUM: $TITLE
 
-> *(Paste LeetCode problem description here)*
-
 ## Link
 https://leetcode.com/problems/${SLUG}/
 
