@@ -51,15 +51,21 @@ cat > "$DIR/README.md" <<EOF
 ## Link
 https://leetcode.com/problems/${SLUG}/
 
+## Intuition
+<!-- Describe your first thoughts on how to solve this problem. -->
+
 ## Approach
-Write your approach and intuition here.
+<!-- Describe your approach to solving the problem. -->
 
 ## Complexity
-- Time:
-- Space:
+- Time complexity:
+<!-- Add your time complexity here, e.g. $$O(n)$$ -->
+
+- Space complexity:
+<!-- Add your space complexity here, e.g. $$O(n)$$ -->
 
 ## Notes
-Any tricky details, edge cases, or key points to remember.
+<-- Any tricky details, edge cases, or key points to remember. -->
 
 EOF
 
