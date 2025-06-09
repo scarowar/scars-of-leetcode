@@ -59,13 +59,13 @@ https://leetcode.com/problems/${SLUG}/
 
 ## Complexity
 - Time complexity:
-<!-- Add your time complexity here, e.g. $$O(n)$$ -->
+<!-- Add your time complexity here. -->
 
 - Space complexity:
-<!-- Add your space complexity here, e.g. $$O(n)$$ -->
+<!-- Add your space complexity here. -->
 
 ## Notes
-<-- Any tricky details, edge cases, or key points to remember. -->
+<!-- Any tricky details, edge cases, or key points to remember. -->
 
 EOF
 
@@ -102,3 +102,10 @@ TEMP_TRACKER="$(mktemp)"
     num=${base%%-*}
     echo "$num $folder"
   done | sort -n | while read -r num folder; do
+    slug=${folder#*-}
+    title=$(echo "$slug" | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
+    echo "| $num | $title | [$folder]($folder) |"
+  done
+} > "$TEMP_TRACKER"
+
+mv "$TEMP_TRACKER" "$TRACKER"
