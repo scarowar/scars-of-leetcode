@@ -3,3 +3,4 @@
 | Number | Title | Folder |
 | ------ | ----- | ------ |
 | 0217 | Contains Duplicate | [0217-contains-duplicate](0217-contains-duplicate) |
+| 0707 | Design Linked List | [0707-design-linked-list](0707-design-linked-list) |
