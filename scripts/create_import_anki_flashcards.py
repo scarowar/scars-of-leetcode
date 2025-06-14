@@ -4,7 +4,7 @@ import hashlib
 import requests
 import glob
 import platform
-import subprocess
+import subprocess  # nosec: B404
 
 
 def get_windows_host_ip_from_wsl():
@@ -13,16 +13,18 @@ def get_windows_host_ip_from_wsl():
     Returns IP string or None if not found.
     """
     try:
-        output = subprocess.check_output(["ip", "route"], encoding="utf-8")
-        # Look for line starting with 'default via'
+        # subprocess is required here to get host IP in WSL; input is trusted
+        output = subprocess.check_output(  # nosec B603, B607
+            ["ip", "route"], encoding="utf-8"
+        )
         for line in output.splitlines():
             if line.startswith("default via "):
-                # line example: default via 172.26.192.1 dev eth0
                 parts = line.split()
                 if len(parts) >= 3:
                     return parts[2]
-    except Exception:
-        pass
+    except Exception as e:
+        # Log the error for debugging, but do not fail automation
+        print(f"[WARN] Failed to get Windows host IP: {e}")
     return None
 
 
@@ -40,8 +42,8 @@ def get_anki_connect_url():
                 win_ip = get_windows_host_ip_from_wsl()
                 if win_ip:
                     return f"http://{win_ip}:8765"
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"[WARN] Failed to detect WSL host: {e}")
 
     # Otherwise use localhost
     return default_url
@@ -91,10 +93,15 @@ def merge_cards(master_data, new_data):
 
 def invoke(action, params):
     request_json = {"action": action, "version": 6, "params": params}
-    response = requests.post(ANKI_CONNECT_URL, json=request_json).json()
-    if "error" in response and response["error"] is not None:
-        raise Exception(f"AnkiConnect error: {response['error']}")
-    return response["result"]
+    try:
+        # Add timeout to avoid hanging
+        response = requests.post(ANKI_CONNECT_URL, json=request_json, timeout=10)
+        response_json = response.json()
+    except Exception as e:
+        raise Exception(f"Failed to connect to AnkiConnect: {e}")
+    if "error" in response_json and response_json["error"] is not None:
+        raise Exception(f"AnkiConnect error: {response_json['error']}")
+    return response_json["result"]
 
 
 def prepare_note(card):
@@ -133,9 +140,9 @@ def import_to_anki(cards):
 def ensure_deck_exists(deck_name):
     try:
         invoke("createDeck", {"deck": deck_name})
-    except Exception:
-        # If deck already exists, ignore the error
-        pass
+    except Exception as e:
+        # If deck already exists, ignore the error, but log for debugging
+        print(f"[INFO] Deck may already exist or error occurred: {e}")
 
 
 def find_all_cards_json(base_folder=PROBLEMS_FOLDER):
