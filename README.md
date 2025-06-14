@@ -108,20 +108,20 @@ All configuration is managed in the `scarleet.toml` file, which is created by th
 
 ## File & Folder Structure
 
+```
 .
 ├── scarleet.toml        # Global configuration for the tool
 ├── main.py              # The CLI entrypoint
 ├── commands/            # Logic for each CLI command
 ├── core/                # Core logic for Anki, SLM, and LeetCode API
 ├── problems/
-│   ├── README.md        # Auto-generated progress summary
-│   └── 1-two-sum/
-│       ├── metadata.json
-│       ├── solution.py
-│       └── README.md    # Auto-generated documentation
-│
+│   ├── ...              # One folder per problem, each with solution and docs
+│   └── README.md        # Auto-generated progress summary
 └── .scarleet/
-    └── lists/           # JSON files for Blind 75, NeetCode 150, etc.
+    └── lists/
+        ├── blind75.json         # Blind 75 list
+        └── neetcode150.json     # NeetCode 150 list
+```
 
 ## Contributing & Support
 
