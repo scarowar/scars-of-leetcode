@@ -1,0 +1,46 @@
+repos:
+- repo: https://github.com/gitleaks/gitleaks
+  rev: v8.18.2
+  hooks:
+  - id: gitleaks
+    name: gitleaks - detect secrets and sensitive data
+    stages: [ commit, push ]
+- repo: https://github.com/psf/black
+  rev: 24.4.2
+  hooks:
+  - id: black
+    language_version: python3
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.4.4
+  hooks:
+  - id: ruff
+    args: [ --fix ]
+- repo: https://github.com/PyCQA/bandit
+  rev: 1.7.8
+  hooks:
+  - id: bandit
+    name: bandit - security linter for python
+    entry: bandit -r problems scripts
+    language: python
+    types: [ python ]
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.5.0
+  hooks:
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+  - id: check-yaml
+  - id: check-added-large-files
+  - id: check-merge-conflict
+  - id: check-json
+  - id: check-docstring-first
+  - id: check-case-conflict
+  - id: check-symlinks
+  - id: debug-statements
+- repo: https://github.com/igorshubovych/markdownlint-cli
+  rev: v0.39.0
+  hooks:
+  - id: markdownlint
+    name: markdownlint for docs and README
+    entry: markdownlint README.md docs/**/*.md anki/*.md problems/**/*.md
+    language: node
+    types: [ markdown ]
