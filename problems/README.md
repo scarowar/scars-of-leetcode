@@ -2,6 +2,7 @@
 
 | Number | Title | NeetCode 150 | Link | Folder |
 | ------ | ----- | ------------ | ---- | ------ |
+| 0001 | Two Sum | true | [Link](https://leetcode.com/problems/two-sum/) | [0001-two-sum](0001-two-sum) |
 | 0019 | Remove Nth Node From End Of List | true | [Link](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) | [0019-remove-nth-node-from-end-of-list](0019-remove-nth-node-from-end-of-list) |
 | 0021 | Merge Two Sorted Lists | true | [Link](https://leetcode.com/problems/merge-two-sorted-lists/) | [0021-merge-two-sorted-lists](0021-merge-two-sorted-lists) |
 | 0141 | Linked List Cycle | true | [Link](https://leetcode.com/problems/linked-list-cycle/) | [0141-linked-list-cycle](0141-linked-list-cycle) |
