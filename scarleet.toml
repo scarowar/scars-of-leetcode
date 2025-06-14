@@ -1,0 +1,86 @@
+[user]
+author = "Scarowar"
+
+[leetcode]
+# Base URL for the GraphQL API
+api_url = "https://leetcode.com/graphql"
+
+[slm]
+# API endpoint for the local SLM server (e.g., Ollama)
+endpoint = "http://localhost:11434/api/generate"
+model = "gemma:2b" # A lightweight, capable model
+
+# Prompt for generating the README content
+docgen_prompt_template = """
+You are an expert educator and algorithm tutor. Your task is to generate the content for a README.md file for the given LeetCode problem to support long-term retention and efficient revision.
+
+Use the reference implementation provided.
+
+# Problem Details
+- Title: {title}
+- LeetCode URL: {url}
+- Difficulty: {difficulty}
+- Description: {description}
+
+# Python Solution
+```python
+{code}
+```
+
+# Instructions
+Analyze the provided information and generate a response in a single, clean JSON object with the following keys. The content should be concise and memory-friendly.
+
+- "intuition": A single, clear sentence describing the core "aha!" moment of the solution.
+- "approach": A brief summary of the algorithm used (e.g., two pointers, hashmap) and how it’s applied.
+- "complexity_time": The time complexity in O-notation (e.g., "O(n)").
+- "complexity_space": The space complexity in O-notation (e.g., "O(1)").
+- "notes": A single string containing a bulleted list (`- `) of the most valuable insights, edge cases, or tricky implementation details.
+
+Do not include any extra commentary or markdown formatting in your response. Abstract only the mental model needed to reconstruct the solution.
+"""
+
+flashcard_prompt_template = """
+You are an expert cognitive science and computer science educator. Your goal is to create high-quality, concise Anki flashcards that promote deep understanding and long-term retention of a LeetCode problem's solution.
+
+# Context
+- **Problem Title:** {title}
+- **My Explanation:**
+  - **Intuition:** {intuition}
+  - **Approach:** {approach}
+- **My Solution Code:**
+  ```python
+  {code}
+  ```
+
+# Instructions
+Based on all the provided context, generate exactly 5-7 flashcards that test different aspects of the solution. You MUST follow these requirements:
+
+1.  **Cloze Deletion Cards are REQUIRED:**
+    * You MUST create at least two (2) cloze deletion cards using the `{{c1::...}}` format. If you do not, your output will be rejected.
+    * Cloze cards must focus on hiding key concepts, algorithmic steps, or general principles (never code or variable names).
+    * Example cloze card (front): "The {{c1::two pointer}} technique is often used to solve problems involving arrays and searching for pairs."
+    * Example cloze card (front): "A {{c1::hash map}} allows for average-case O(1) lookups."
+    * Do NOT use code or variable names in cloze deletions.
+
+2.  **Variety is Key:**
+    * At least two (2) conceptual **Q&A** cards that ask "why" a certain approach, pattern, or technique was used.
+    * At least one (1) card about an **edge case**.
+    * You may include other types (e.g., true/false, multiple choice) if they help test conceptual understanding.
+
+3.  **No Code/Variable Memorization:**
+    * **Do NOT** create cards that require memorizing or recalling specific variable names, function names, or code implementation details from the provided solution.
+    * Focus on general patterns, algorithmic strategies, and problem-solving techniques that are transferable to other problems.
+
+4.  **Focus on the "Why" and Patterns:**
+    * Ask *why* a certain approach, data structure, or algorithm is used, and what general pattern it represents.
+    * Emphasize the reasoning behind the choice of technique, not the mechanics of the code.
+    * *Good Example:* "Why is a hash map a more efficient choice than a nested loop for the Two Sum problem?"
+    * *Bad Example:* "What does the variable 'i' represent in the code?"
+
+5.  **Atomic and Concise:** Each card must focus on one single, testable concept.
+
+6.  **JSON Output:** You MUST return a single, clean, and valid JSON object with a "cards" key. The value should be an array of card objects, where each object has "front" and "back" keys. Do not include any other text or markdown.
+"""
+
+[anki]
+deck_name = "Scars of LeetCode"
