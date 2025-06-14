@@ -1,12 +1,16 @@
 from typing import *
 
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
+
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         dummy = ListNode(None)
         p = dummy
 
@@ -21,16 +25,18 @@ class Solution:
                 p.next = p2
                 p2 = p2.next
             p = p.next
-            
+
         if p1:
             p.next = p1
 
         if p2:
             p.next = p2
-        
+
         return dummy.next
 
+
 if __name__ == "__main__":
+
     def build_list(arr):
         dummy = ListNode()
         curr = dummy
@@ -47,7 +53,7 @@ if __name__ == "__main__":
         return res
 
     s = Solution()
-    list1 = build_list([1,2,4])
-    list2 = build_list([1,3,4])
+    list1 = build_list([1, 2, 4])
+    list2 = build_list([1, 3, 4])
     merged = s.mergeTwoLists(list1, list2)
     print(to_list(merged))  # Expected: [1,1,2,3,4,4]

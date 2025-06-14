@@ -1,9 +1,11 @@
 from typing import *
 
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
@@ -25,7 +27,9 @@ class Solution:
 
         return dummy.next
 
+
 if __name__ == "__main__":
+
     def build_list(arr):
         dummy = ListNode()
         curr = dummy
@@ -42,7 +46,7 @@ if __name__ == "__main__":
         return res
 
     s = Solution()
-    list1 = build_list([1,2,3,4,5])
+    list1 = build_list([1, 2, 3, 4, 5])
     list2 = build_list([1])
     answer_one = s.removeNthFromEnd(list1, 2)
     answer_two = s.removeNthFromEnd(list2, 1)
