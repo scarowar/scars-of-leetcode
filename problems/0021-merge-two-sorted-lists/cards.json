@@ -1,0 +1,66 @@
+{
+  "problem_id": "0021",
+  "problem_title": "Merge Two Sorted Lists",
+  "cards": [
+    {
+      "front": "[0021] Merge Two Sorted Lists - What is the main algorithmic pattern used to merge two sorted linked lists?",
+      "back": "The {{c1::two-pointers}} technique, where you compare the heads of both lists and attach the smaller node each time, similar to the merge step in merge sort.",
+      "tags": "linked-list two-pointers merge-sort algorithm NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Fill in the blank: A __ node is used to simplify handling the head of the merged list.",
+      "back": "dummy",
+      "tags": "dummy-node head pointer linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - What is the time and space complexity of the iterative merge approach?",
+      "back": "Time: {{c1::O(n + m)}} where n and m are the lengths of the lists. Space: {{c2::O(1)}} since the merge is done in-place.",
+      "tags": "complexity O(n+m) O(1) in-place linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Step-by-step: How does the solution merge the two lists?",
+      "back": "1. Initialize a dummy node and a pointer p.\n2. Use two pointers (p1, p2) for each list.\n3. While both lists are non-empty, attach the smaller node to p.next and advance that list's pointer.\n4. After the loop, attach any remaining nodes from either list.\n5. Return dummy.next as the merged list head.",
+      "tags": "step-by-step merge linked-list algorithm NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - True/False: The solution always works even if one or both input lists are empty.",
+      "back": "True; the code checks for leftovers and attaches them, so empty lists are handled correctly.",
+      "tags": "edge-case empty-list correctness NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - What is a common mistake when merging two sorted lists?",
+      "back": "A common mistake is {{c1::not handling the leftover nodes}} after one list is exhausted, or forgetting to use a dummy node to simplify head handling.",
+      "tags": "common-mistake leftover dummy-node linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Analogy: How is merging two sorted lists like merging two sorted lines of people?",
+      "back": "You always let the person with the smaller number go first from either line, and when one line is empty, you let everyone else from the other line go in order.",
+      "tags": "analogy merge intuition linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Cloze: The recursive solution uses extra __ space due to the call stack.",
+      "back": "The recursive approach uses extra {{c1::stack}} space, which can be up to O(n + m) in the worst case.",
+      "tags": "recursion stack-space complexity linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Interleaving: Which other problems use a similar merging pattern?",
+      "back": "Problems like 'Merge k Sorted Lists', 'Merge Intervals', and the merge step in 'Merge Sort' use similar merging logic.",
+      "tags": "interleaving merge pattern linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Fill in the blank: After the main loop, the solution attaches any remaining nodes from __ list(s) to the merged list.",
+      "back": "either",
+      "tags": "leftover nodes fill-in-the-blank linked-list NeetCode150",
+      "card_type": "basic"
+    }
+  ]
+}

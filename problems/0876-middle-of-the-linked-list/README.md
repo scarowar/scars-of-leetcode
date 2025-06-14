@@ -4,15 +4,18 @@
 https://leetcode.com/problems/middle-of-the-linked-list/
 
 ## Intuition
-Use two pointers moving at different speeds to find the middle efficiently in a single pass.
+Fast and slow pointers let you find the middle in one pass.
 
 ## Approach
-Initialize fast and slow pointers at the head; move fast by two steps and slow by one until fast reaches the end, then return slow.
+Start both pointers at head; move fast by two and slow by one until fast reaches the end, then return slow.
 
 ## Complexity
-- Time complexity: O(n), as each node is visited at most once.
-- Space complexity: O(1), using only two pointers regardless of list size.
+- Time: O(n)
+- Space: O(1)
 
 ## Notes
-Alternate: count nodes then index to middle; for even length, returns second middle; handles empty/one-node lists gracefully.
+- For even length, returns the second middle node.
+- Handles empty and single-node lists.
+- Alternate: count nodes, then index to middle.
 
+NeetCode 150: false

@@ -4,15 +4,18 @@
 https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
 ## Intuition
-Use two pointers to efficiently locate the node to remove in a single pass by maintaining a fixed gap.
+Keep two pointers n+1 apart to find the node to remove in one pass.
 
 ## Approach
-Create a dummy node, advance the first pointer n+1 steps, then move both pointers until the first reaches the end; remove the target node.
+Use a dummy node and two pointers; move the first pointer n+1 steps ahead, then move both until the first hits the end.
 
 ## Complexity
-- Time complexity: O(n), where n is the length of the list (single traversal).
-- Space complexity: O(1), as only a few pointers are used.
+- Time: O(n)
+- Space: O(1)
 
 ## Notes
-Alternative: calculate length in two passes; handle edge cases like removing the head or single-node lists.
+- Dummy node handles head removal cleanly.
+- Works for single-node lists and when n equals list length.
+- Alternative: two-pass approach by counting nodes first.
 
+NeetCode 150: true

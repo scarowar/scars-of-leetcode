@@ -1,0 +1,66 @@
+{
+  "problem_id": "0019",
+  "problem_title": "Remove Nth Node From End Of List",
+  "cards": [
+    {
+      "front": "[0019] Remove Nth Node From End Of List - What is the main algorithmic pattern used to solve this problem in one pass?",
+      "back": "The {{c1::two-pointers}} technique, where two pointers are kept n+1 apart to identify the node to remove in a single traversal.",
+      "tags": "linked-list two-pointers algorithm NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Why is a dummy node used in this solution?",
+      "back": "A dummy node {{c1::simplifies removal of the head node}} and handles edge cases where the first node must be deleted.",
+      "tags": "dummy-node head edge-case linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Step-by-step: How does the two-pointer approach remove the nth node from the end?",
+      "back": "1. Create a dummy node pointing to head.\n2. Move the first pointer (p1) n+1 steps ahead.\n3. Move both pointers (p1, p2) together until p1 reaches the end.\n4. p2 now points to the node before the one to remove.\n5. Update p2.next to skip the target node.",
+      "tags": "step-by-step two-pointers linked-list algorithm NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Fill in the blank: The first pointer is moved __ steps ahead to create the correct gap.",
+      "back": "n+1",
+      "tags": "two-pointers gap fill-in-the-blank linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - True/False: This approach works for single-node lists and when n equals the list length.",
+      "back": "True; the dummy node ensures these edge cases are handled cleanly.",
+      "tags": "edge-case single-node dummy-node linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - What is a common mistake when implementing this algorithm?",
+      "back": "A common mistake is {{c1::not moving the first pointer n+1 steps ahead}}, which causes incorrect node removal, or not using a dummy node for head removal.",
+      "tags": "common-mistake two-pointers dummy-node linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - What is the time and space complexity of this approach?",
+      "back": "Time: {{c1::O(n)}} for a single traversal. Space: {{c2::O(1)}} since only pointers are used.",
+      "tags": "complexity O(n) O(1) linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Analogy: How is the two-pointer technique like a relay race?",
+      "back": "The first runner (pointer) starts ahead by n+1 steps; when the second runner (pointer) starts, they both move together. When the first finishes, the second is at the perfect spot to make the change (remove the node).",
+      "tags": "analogy two-pointers intuition linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Interleaving: Which other problems use a similar two-pointer gap technique?",
+      "back": "Problems like 'Linked List Cycle Detection', 'Middle of the Linked List', and 'Remove Duplicates from Sorted List' use similar two-pointer strategies.",
+      "tags": "interleaving two-pointers linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Fill in the blank: The alternative two-pass approach first __ the nodes, then removes the nth from end.",
+      "back": "counts",
+      "tags": "alternative two-pass count fill-in-the-blank linked-list NeetCode150",
+      "card_type": "basic"
+    }
+  ]
+}

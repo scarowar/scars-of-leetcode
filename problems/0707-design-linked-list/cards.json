@@ -1,0 +1,72 @@
+{
+  "problem_id": "0707",
+  "problem_title": "Design Linked List",
+  "cards": [
+    {
+      "front": "[0707] Design Linked List - What is the main advantage of using dummy head and tail nodes in a linked list implementation?",
+      "back": "Dummy nodes {{c1::simplify insertions and deletions at the boundaries}} (head/tail), preventing edge-case bugs and making code cleaner.",
+      "tags": "linked-list dummy-node boundary edge-case design",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0707] Design Linked List - Fill in the blank: The solution uses a __ linked list with dummy nodes for efficient operations.",
+      "back": "doubly",
+      "tags": "linked-list doubly design fill-in-the-blank",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - What is the time complexity for addAtHead and addAtTail operations?",
+      "back": "Both addAtHead and addAtTail run in {{c1::O(1)}} time, since they only require pointer updates at the ends.",
+      "tags": "complexity O(1) addAtHead addAtTail linked-list",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0707] Design Linked List - What is the time complexity for get, addAtIndex, and deleteAtIndex operations?",
+      "back": "These operations require traversing the list, so they run in {{c1::O(n)}} time.",
+      "tags": "complexity O(n) traversal get addAtIndex deleteAtIndex linked-list",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0707] Design Linked List - Step-by-step: How does addAtIndex work when inserting in the middle of the list?",
+      "back": "1. Check if the index is valid (0 <= index <= size).\n2. If index == size, call addAtTail.\n3. Otherwise, traverse to the node at the given index.\n4. Insert the new node before this node by updating pointers.\n5. Increment the size.",
+      "tags": "addAtIndex step-by-step linked-list insertion",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - True/False: The solution always checks index bounds before performing operations.",
+      "back": "True; helper functions ensure that operations are only performed at valid positions, preventing out-of-bounds errors.",
+      "tags": "index-bounds validation correctness edge-case",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - What is a common mistake when implementing linked list operations at the head or tail?",
+      "back": "A common mistake is {{c1::not handling empty lists or boundary cases}}, which can lead to null pointer errors. Dummy nodes help avoid this.",
+      "tags": "common-mistake dummy-node boundary edge-case",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0707] Design Linked List - Analogy: How do dummy nodes in a linked list act like bookends on a shelf?",
+      "back": "Dummy nodes (bookends) keep the structure stable, so adding or removing books (nodes) at either end is always safe and easy.",
+      "tags": "analogy dummy-node intuition linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - What is the role of the getNode helper function?",
+      "back": "getNode traverses from the head to the given index and returns the node at that position, simplifying access for other operations.",
+      "tags": "getNode helper traversal linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - Interleaving: How does this doubly linked list approach compare to a singly linked list for this problem?",
+      "back": "A doubly linked list allows efficient insertions and deletions at both ends and in the middle, while a singly linked list would require more pointer updates and is less efficient for some operations.",
+      "tags": "interleaving doubly singly linked-list comparison",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - Fill in the blank: The size variable is updated whenever a node is ___ or ___.",
+      "back": "added or removed",
+      "tags": "size variable update fill-in-the-blank linked-list",
+      "card_type": "basic"
+    }
+  ]
+}

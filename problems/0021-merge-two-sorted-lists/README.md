@@ -4,15 +4,18 @@
 https://leetcode.com/problems/merge-two-sorted-lists/
 
 ## Intuition
-Use two pointers to traverse both lists, always attaching the smaller node to the merged list, similar to the merge step in merge sort.
+Merge by always attaching the smaller node from either list, like the merge step in merge sort.
 
 ## Approach
-Iterate through both lists with pointers, linking the smaller node to a dummy node's next, and append any remaining nodes at the end.
+Use two pointers and a dummy node; link the smaller node each time, then append leftovers.
 
 ## Complexity
-- Time complexity: O(n + m), where n and m are the lengths of the two lists.
-- Space complexity: O(1), as merging is done in-place without extra data structures.
+- Time: O(n + m), where n and m are the lengths of the lists.
+- Space: O(1), in-place merge.
 
 ## Notes
-Recursive solutions are common but use extra stack space; always handle empty lists and lists of different lengths.
+- Always handle empty lists and unequal lengths.
+- Dummy node simplifies head handling.
+- Recursive solutions use extra stack space.
 
+NeetCode 150: true

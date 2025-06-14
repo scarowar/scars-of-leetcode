@@ -1,0 +1,66 @@
+{
+  "problem_id": "0217",
+  "problem_title": "Contains Duplicate",
+  "cards": [
+    {
+      "front": "[0217] Contains Duplicate - What is the core data structure used to efficiently detect duplicates in this problem?",
+      "back": "A {{c1::set}} is used to track seen numbers, allowing O(1) average time for membership checks.",
+      "tags": "set hashset membership algorithm NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0217] Contains Duplicate - What is the time and space complexity of the set-based approach?",
+      "back": "Both time and space complexity are {{c1::O(n)}}, where n is the number of elements in the input list.",
+      "tags": "complexity analysis set NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Step-by-step: How does the solution determine if a duplicate exists?",
+      "back": "1. Initialize an empty set.\n2. Iterate through each number in the list.\n3. If the number is already in the set, return True (duplicate found).\n4. Otherwise, add the number to the set.\n5. If the loop completes, return False (no duplicates).",
+      "tags": "algorithm step-by-step set NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Fill in the blank: The solution returns True as soon as it finds a number that is already in the ___.",
+      "back": "set",
+      "tags": "set membership fill-in-the-blank NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - True/False: The solution works correctly for empty and single-element lists.",
+      "back": "True; in both cases, there are no duplicates, so the function returns False.",
+      "tags": "edge-case correctness NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - What is a common mistake when checking for duplicates in a list?",
+      "back": "A common mistake is to use a nested loop (O(n^2)) instead of a set for O(n) time, or to forget that set membership is O(1) on average.",
+      "tags": "common-mistake brute-force set NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Cloze: The one-liner solution is: return len(nums) != len({{c1::set(nums)}}).",
+      "back": "The one-liner leverages the property that converting a list to a set removes duplicates; if the lengths differ, duplicates exist.",
+      "tags": "one-liner python set NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Analogy: How is using a set to detect duplicates like checking names off a guest list?",
+      "back": "Each time a name (number) arrives, you check if it's already on the guest list (set). If it is, you know someone is trying to enter twice (duplicate). If not, you add the name to the list.",
+      "tags": "analogy set intuition NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - What property of sets makes them ideal for this problem?",
+      "back": "Sets provide {{c1::O(1) average time complexity}} for membership checks, making them ideal for detecting duplicates efficiently.",
+      "tags": "set property efficiency NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Interleaving: Which other problems use a similar set-based approach for fast lookups?",
+      "back": "Problems like 'Two Sum', 'Longest Substring Without Repeating Characters', and 'Happy Number' also use sets for fast membership checks.",
+      "tags": "interleaving set lookup NeetCode150",
+      "card_type": "basic"
+    }
+  ]
+}

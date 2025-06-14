@@ -4,14 +4,18 @@
 https://leetcode.com/problems/contains-duplicate/
 
 ## Intuition
-A set helps instantly spot duplicates as we scan through the list.
+Duplicates can be detected instantly by tracking seen numbers in a set.
 
 ## Approach
-Iterate through nums, returning True if a number is already in the set; otherwise, add it and continue.
+Use a set to record numbers as you iterate; return True if a number is already present.
 
 ## Complexity
 - Time: O(n)
 - Space: O(n)
 
 ## Notes
-Alternative: return len(nums) != len(set(nums)); this one-liner also detects duplicates efficiently.
+- One-liner: return len(nums) != len(set(nums)).
+- Handles empty and single-element lists.
+- Set lookup is O(1) on average.
+
+NeetCode 150: true

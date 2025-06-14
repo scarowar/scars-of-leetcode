@@ -4,15 +4,18 @@
 https://leetcode.com/problems/linked-list-cycle/
 
 ## Intuition
-Use two pointers moving at different speeds to detect a cycle efficiently in a linked list.
+Fast and slow pointers reveal a cycle if they ever meet.
 
 ## Approach
-Initialize fast and slow pointers; move fast by two steps and slow by one, and if they ever meet, a cycle exists.
+Use two pointers; move fast by two and slow by one, return True if they meet.
 
 ## Complexity
-- Time complexity: O(n), as each node is visited at most twice.
-- Space complexity: O(1), using only two pointers regardless of list size.
+- Time: O(n)
+- Space: O(1)
 
 ## Notes
-Alternate: use a hash set to track visited nodes (O(n) space); always check for empty or single-node lists; Floyd's Tortoise and Hare is optimal for space.
+- Floyd's Tortoise and Hare is optimal for space.
+- Alternate: use a hash set for O(n) space.
+- Always check for empty or single-node lists.
 
+NeetCode 150: true

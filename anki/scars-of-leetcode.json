@@ -1,0 +1,372 @@
+{
+  "problem_id": "merged",
+  "problem_title": "Scars of LeetCode",
+  "cards": [
+    {
+      "front": "[0707] Design Linked List - What is the main advantage of using dummy head and tail nodes in a linked list implementation?",
+      "back": "Dummy nodes {{c1::simplify insertions and deletions at the boundaries}} (head/tail), preventing edge-case bugs and making code cleaner.",
+      "tags": "linked-list dummy-node boundary edge-case design",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0707] Design Linked List - Fill in the blank: The solution uses a __ linked list with dummy nodes for efficient operations.",
+      "back": "doubly",
+      "tags": "linked-list doubly design fill-in-the-blank",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - What is the time complexity for addAtHead and addAtTail operations?",
+      "back": "Both addAtHead and addAtTail run in {{c1::O(1)}} time, since they only require pointer updates at the ends.",
+      "tags": "complexity O(1) addAtHead addAtTail linked-list",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0707] Design Linked List - What is the time complexity for get, addAtIndex, and deleteAtIndex operations?",
+      "back": "These operations require traversing the list, so they run in {{c1::O(n)}} time.",
+      "tags": "complexity O(n) traversal get addAtIndex deleteAtIndex linked-list",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0707] Design Linked List - Step-by-step: How does addAtIndex work when inserting in the middle of the list?",
+      "back": "1. Check if the index is valid (0 <= index <= size).\n2. If index == size, call addAtTail.\n3. Otherwise, traverse to the node at the given index.\n4. Insert the new node before this node by updating pointers.\n5. Increment the size.",
+      "tags": "addAtIndex step-by-step linked-list insertion",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - True/False: The solution always checks index bounds before performing operations.",
+      "back": "True; helper functions ensure that operations are only performed at valid positions, preventing out-of-bounds errors.",
+      "tags": "index-bounds validation correctness edge-case",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - What is a common mistake when implementing linked list operations at the head or tail?",
+      "back": "A common mistake is {{c1::not handling empty lists or boundary cases}}, which can lead to null pointer errors. Dummy nodes help avoid this.",
+      "tags": "common-mistake dummy-node boundary edge-case",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0707] Design Linked List - Analogy: How do dummy nodes in a linked list act like bookends on a shelf?",
+      "back": "Dummy nodes (bookends) keep the structure stable, so adding or removing books (nodes) at either end is always safe and easy.",
+      "tags": "analogy dummy-node intuition linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - What is the role of the getNode helper function?",
+      "back": "getNode traverses from the head to the given index and returns the node at that position, simplifying access for other operations.",
+      "tags": "getNode helper traversal linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - Interleaving: How does this doubly linked list approach compare to a singly linked list for this problem?",
+      "back": "A doubly linked list allows efficient insertions and deletions at both ends and in the middle, while a singly linked list would require more pointer updates and is less efficient for some operations.",
+      "tags": "interleaving doubly singly linked-list comparison",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0707] Design Linked List - Fill in the blank: The size variable is updated whenever a node is ___ or ___.",
+      "back": "added or removed",
+      "tags": "size variable update fill-in-the-blank linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - What is the main algorithmic pattern used to merge two sorted linked lists?",
+      "back": "The {{c1::two-pointers}} technique, where you compare the heads of both lists and attach the smaller node each time, similar to the merge step in merge sort.",
+      "tags": "linked-list two-pointers merge-sort algorithm NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Fill in the blank: A __ node is used to simplify handling the head of the merged list.",
+      "back": "dummy",
+      "tags": "dummy-node head pointer linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - What is the time and space complexity of the iterative merge approach?",
+      "back": "Time: {{c1::O(n + m)}} where n and m are the lengths of the lists. Space: {{c2::O(1)}} since the merge is done in-place.",
+      "tags": "complexity O(n+m) O(1) in-place linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Step-by-step: How does the solution merge the two lists?",
+      "back": "1. Initialize a dummy node and a pointer p.\n2. Use two pointers (p1, p2) for each list.\n3. While both lists are non-empty, attach the smaller node to p.next and advance that list's pointer.\n4. After the loop, attach any remaining nodes from either list.\n5. Return dummy.next as the merged list head.",
+      "tags": "step-by-step merge linked-list algorithm NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - True/False: The solution always works even if one or both input lists are empty.",
+      "back": "True; the code checks for leftovers and attaches them, so empty lists are handled correctly.",
+      "tags": "edge-case empty-list correctness NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - What is a common mistake when merging two sorted lists?",
+      "back": "A common mistake is {{c1::not handling the leftover nodes}} after one list is exhausted, or forgetting to use a dummy node to simplify head handling.",
+      "tags": "common-mistake leftover dummy-node linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Analogy: How is merging two sorted lists like merging two sorted lines of people?",
+      "back": "You always let the person with the smaller number go first from either line, and when one line is empty, you let everyone else from the other line go in order.",
+      "tags": "analogy merge intuition linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Cloze: The recursive solution uses extra __ space due to the call stack.",
+      "back": "The recursive approach uses extra {{c1::stack}} space, which can be up to O(n + m) in the worst case.",
+      "tags": "recursion stack-space complexity linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Interleaving: Which other problems use a similar merging pattern?",
+      "back": "Problems like 'Merge k Sorted Lists', 'Merge Intervals', and the merge step in 'Merge Sort' use similar merging logic.",
+      "tags": "interleaving merge pattern linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0021] Merge Two Sorted Lists - Fill in the blank: After the main loop, the solution attaches any remaining nodes from __ list(s) to the merged list.",
+      "back": "either",
+      "tags": "leftover nodes fill-in-the-blank linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - What is the main algorithmic pattern used to solve this problem in one pass?",
+      "back": "The {{c1::two-pointers}} technique, where two pointers are kept n+1 apart to identify the node to remove in a single traversal.",
+      "tags": "linked-list two-pointers algorithm NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Why is a dummy node used in this solution?",
+      "back": "A dummy node {{c1::simplifies removal of the head node}} and handles edge cases where the first node must be deleted.",
+      "tags": "dummy-node head edge-case linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Step-by-step: How does the two-pointer approach remove the nth node from the end?",
+      "back": "1. Create a dummy node pointing to head.\n2. Move the first pointer (p1) n+1 steps ahead.\n3. Move both pointers (p1, p2) together until p1 reaches the end.\n4. p2 now points to the node before the one to remove.\n5. Update p2.next to skip the target node.",
+      "tags": "step-by-step two-pointers linked-list algorithm NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Fill in the blank: The first pointer is moved __ steps ahead to create the correct gap.",
+      "back": "n+1",
+      "tags": "two-pointers gap fill-in-the-blank linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - True/False: This approach works for single-node lists and when n equals the list length.",
+      "back": "True; the dummy node ensures these edge cases are handled cleanly.",
+      "tags": "edge-case single-node dummy-node linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - What is a common mistake when implementing this algorithm?",
+      "back": "A common mistake is {{c1::not moving the first pointer n+1 steps ahead}}, which causes incorrect node removal, or not using a dummy node for head removal.",
+      "tags": "common-mistake two-pointers dummy-node linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - What is the time and space complexity of this approach?",
+      "back": "Time: {{c1::O(n)}} for a single traversal. Space: {{c2::O(1)}} since only pointers are used.",
+      "tags": "complexity O(n) O(1) linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Analogy: How is the two-pointer technique like a relay race?",
+      "back": "The first runner (pointer) starts ahead by n+1 steps; when the second runner (pointer) starts, they both move together. When the first finishes, the second is at the perfect spot to make the change (remove the node).",
+      "tags": "analogy two-pointers intuition linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Interleaving: Which other problems use a similar two-pointer gap technique?",
+      "back": "Problems like 'Linked List Cycle Detection', 'Middle of the Linked List', and 'Remove Duplicates from Sorted List' use similar two-pointer strategies.",
+      "tags": "interleaving two-pointers linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0019] Remove Nth Node From End Of List - Fill in the blank: The alternative two-pass approach first __ the nodes, then removes the nth from end.",
+      "back": "counts",
+      "tags": "alternative two-pass count fill-in-the-blank linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - What is the main algorithmic pattern used to find the middle node in one pass?",
+      "back": "The {{c1::fast and slow pointers}} technique, where fast moves two steps and slow moves one step per iteration.",
+      "tags": "linked-list fast-slow-pointers two-pointers algorithm",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - Fill in the blank: Both pointers start at the __ of the list.",
+      "back": "head",
+      "tags": "fill-in-the-blank pointer-init linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - What is the time and space complexity of this approach?",
+      "back": "Time: {{c1::O(n)}} for a single traversal. Space: {{c2::O(1)}} since only pointers are used.",
+      "tags": "complexity O(n) O(1) linked-list",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - Step-by-step: How does the fast and slow pointer approach find the middle?",
+      "back": "1. Initialize fast and slow pointers at head.\n2. Move fast by two steps and slow by one step each iteration.\n3. When fast reaches the end (or fast.next is None), slow is at the middle.\n4. Return slow.",
+      "tags": "step-by-step fast-slow-pointers linked-list algorithm",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - True/False: For even-length lists, this approach returns the first middle node.",
+      "back": "False; it returns the second middle node for even-length lists.",
+      "tags": "even-length edge-case middle-node linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - What is a common mistake when using fast and slow pointers?",
+      "back": "A common mistake is {{c1::not checking if fast and fast.next are valid}} before advancing, which can cause errors on short or empty lists.",
+      "tags": "common-mistake fast-slow-pointers edge-case linked-list",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - Analogy: How is the fast and slow pointer technique like a race between a rabbit and a turtle?",
+      "back": "The rabbit (fast pointer) moves twice as fast as the turtle (slow pointer). When the rabbit finishes, the turtle is at the halfway point (the middle node).",
+      "tags": "analogy fast-slow-pointers intuition linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - Interleaving: Which other problems use a similar fast and slow pointer technique?",
+      "back": "Problems like 'Linked List Cycle Detection', 'Remove Nth Node From End Of List', and 'Palindrome Linked List' use similar fast and slow pointer strategies.",
+      "tags": "interleaving fast-slow-pointers linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - Fill in the blank: An alternate approach is to first __ the nodes, then index to the middle.",
+      "back": "count",
+      "tags": "alternative count fill-in-the-blank linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0876] Middle Of The Linked List - True/False: The solution handles empty and single-node lists correctly.",
+      "back": "True; the code returns the correct result for both cases.",
+      "tags": "edge-case empty-list single-node correctness linked-list",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - What is the core data structure used to efficiently detect duplicates in this problem?",
+      "back": "A {{c1::set}} is used to track seen numbers, allowing O(1) average time for membership checks.",
+      "tags": "set hashset membership algorithm NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0217] Contains Duplicate - What is the time and space complexity of the set-based approach?",
+      "back": "Both time and space complexity are {{c1::O(n)}}, where n is the number of elements in the input list.",
+      "tags": "complexity analysis set NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Step-by-step: How does the solution determine if a duplicate exists?",
+      "back": "1. Initialize an empty set.\n2. Iterate through each number in the list.\n3. If the number is already in the set, return True (duplicate found).\n4. Otherwise, add the number to the set.\n5. If the loop completes, return False (no duplicates).",
+      "tags": "algorithm step-by-step set NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Fill in the blank: The solution returns True as soon as it finds a number that is already in the ___.",
+      "back": "set",
+      "tags": "set membership fill-in-the-blank NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - True/False: The solution works correctly for empty and single-element lists.",
+      "back": "True; in both cases, there are no duplicates, so the function returns False.",
+      "tags": "edge-case correctness NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - What is a common mistake when checking for duplicates in a list?",
+      "back": "A common mistake is to use a nested loop (O(n^2)) instead of a set for O(n) time, or to forget that set membership is O(1) on average.",
+      "tags": "common-mistake brute-force set NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Cloze: The one-liner solution is: return len(nums) != len({{c1::set(nums)}}).",
+      "back": "The one-liner leverages the property that converting a list to a set removes duplicates; if the lengths differ, duplicates exist.",
+      "tags": "one-liner python set NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Analogy: How is using a set to detect duplicates like checking names off a guest list?",
+      "back": "Each time a name (number) arrives, you check if it's already on the guest list (set). If it is, you know someone is trying to enter twice (duplicate). If not, you add the name to the list.",
+      "tags": "analogy set intuition NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0217] Contains Duplicate - What property of sets makes them ideal for this problem?",
+      "back": "Sets provide {{c1::O(1) average time complexity}} for membership checks, making them ideal for detecting duplicates efficiently.",
+      "tags": "set property efficiency NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0217] Contains Duplicate - Interleaving: Which other problems use a similar set-based approach for fast lookups?",
+      "back": "Problems like 'Two Sum', 'Longest Substring Without Repeating Characters', and 'Happy Number' also use sets for fast membership checks.",
+      "tags": "interleaving set lookup NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0141] Linked List Cycle - What is the main algorithmic pattern used to detect a cycle in a linked list with O(1) space?",
+      "back": "The {{c1::fast and slow pointers}} technique (Floyd's Tortoise and Hare), where fast moves two steps and slow moves one step per iteration.",
+      "tags": "linked-list fast-slow-pointers floyd algorithm NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0141] Linked List Cycle - Fill in the blank: If the fast and slow pointers ever __, a cycle exists.",
+      "back": "meet",
+      "tags": "fill-in-the-blank fast-slow-pointers cycle-detection linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0141] Linked List Cycle - What is the time and space complexity of Floyd's Tortoise and Hare algorithm?",
+      "back": "Time: {{c1::O(n)}} for a single traversal. Space: {{c2::O(1)}} since only pointers are used.",
+      "tags": "complexity O(n) O(1) floyd fast-slow-pointers linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0141] Linked List Cycle - Step-by-step: How does the fast and slow pointer approach detect a cycle?",
+      "back": "1. Initialize fast and slow pointers at head.\n2. Move fast by two steps and slow by one step each iteration.\n3. If fast and slow meet, a cycle exists.\n4. If fast reaches the end, no cycle exists.",
+      "tags": "step-by-step fast-slow-pointers cycle-detection linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0141] Linked List Cycle - True/False: Using a hash set to track visited nodes also detects cycles but uses O(n) space.",
+      "back": "True; a hash set can detect cycles but is less space-efficient than the two-pointer method.",
+      "tags": "hash-set alternative space-complexity cycle-detection linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0141] Linked List Cycle - What is a common mistake when implementing the fast and slow pointer approach?",
+      "back": "A common mistake is {{c1::not checking if fast and fast.next are valid}} before advancing, which can cause errors on short or empty lists.",
+      "tags": "common-mistake fast-slow-pointers edge-case linked-list NeetCode150",
+      "card_type": "cloze"
+    },
+    {
+      "front": "[0141] Linked List Cycle - Analogy: How is the fast and slow pointer technique like two runners on a circular track?",
+      "back": "If the faster runner (fast pointer) laps the slower runner (slow pointer), they will eventually meet if the track is circular (cycle exists).",
+      "tags": "analogy fast-slow-pointers intuition linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0141] Linked List Cycle - Interleaving: Which other problems use a similar fast and slow pointer technique?",
+      "back": "Problems like 'Middle of the Linked List', 'Remove Nth Node From End Of List', and 'Palindrome Linked List' use similar fast and slow pointer strategies.",
+      "tags": "interleaving fast-slow-pointers linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0141] Linked List Cycle - Fill in the blank: Always check for __ or single-node lists before running the cycle detection algorithm.",
+      "back": "empty",
+      "tags": "edge-case empty-list fill-in-the-blank linked-list NeetCode150",
+      "card_type": "basic"
+    },
+    {
+      "front": "[0141] Linked List Cycle - True/False: Floyd's Tortoise and Hare algorithm is optimal for space complexity.",
+      "back": "True; it uses only two pointers and no extra data structures.",
+      "tags": "floyd optimal space-complexity fast-slow-pointers linked-list NeetCode150",
+      "card_type": "basic"
+    }
+  ]
+}
