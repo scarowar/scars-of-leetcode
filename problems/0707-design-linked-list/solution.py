@@ -16,7 +16,6 @@ class MyLinkedList:
         self.size = 0
 
     def get(self, index: int) -> int:
-        # print(index, self.size)
         if not self.checkElementAtIndex(index):
             return -1
         
@@ -87,7 +86,6 @@ class MyLinkedList:
         self.size -= 1
     
     # utils
-    
     def checkElementAtIndex(self, index):
         return 0 <= index < self.size
     
