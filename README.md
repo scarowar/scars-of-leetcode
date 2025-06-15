@@ -21,6 +21,7 @@
 * [File & Folder Structure](#file--folder-structure)
 * [Contributing & Support](#contributing--support)
 * [License](#license)
+* [OpenAI API Usage (Optional)](#openai-api-usage-optional)
 
 ## Overview
 
@@ -67,27 +68,45 @@ This project is for anyone who wants to build a deep, recallable understanding o
     python main.py setup
     ```
 
+## Installation (Local CLI)
+
+You can install all dependencies with either:
+
+```sh
+pip install -r requirements.txt
+```
+
+or, if you prefer PEP 621/modern Python packaging:
+
+```sh
+pip install .
+```
+
+Both methods will install all required packages for Scarleet.
+
+See [INSTALL.md](INSTALL.md) for more details.
+
 ## The Workflow: A Quick Start
 
 The entire process is designed to be simple and flow naturally with your practice.
 
 1.  **Create a New Problem:**
     ```sh
-    python main.py new <problem-slug>
-    # Example: python main.py new two-sum
+    scarleet new <problem-slug>
+    # Example: scarleet new two-sum
     ```
 2.  **Solve It:** Navigate to the new `problems/[id]-[slug]` directory and write your solution in `solution.py`.
 3.  **Generate Docs:** After your solution is accepted on LeetCode, let Scarleet document it for you.
     ```sh
-    python main.py docgen <problem-slug>
+    scarleet docgen <problem-slug>
     ```
 4.  **Create Flashcards:** Turn your documented solution into study material.
     ```sh
-    python main.py flashcards <problem-slug>
+    scarleet flashcards <problem-slug>
     ```
 5.  **Track Your Progress:** View a summary of all your solved problems and update the master `README.md`.
     ```sh
-    python main.py status --update-readme
+    scarleet status --update-readme
     ```
 
 ## Command Usage
@@ -122,6 +141,39 @@ All configuration is managed in the `scarleet.toml` file, which is created by th
         ├── blind75.json         # Blind 75 list
         └── neetcode150.json     # NeetCode 150 list
 ```
+
+
+## OpenAI or Azure OpenAI Usage (Optional)
+
+Scarleet can use either OpenAI or Azure OpenAI models (like GPT-4, GPT-3.5, etc.) for generating flashcards and documentation. To enable this, set the following environment variables in a `.env` file (which should NOT be committed to version control):
+
+### For OpenAI:
+```
+OPENAI_API_KEY=sk-...your-key...
+OPENAI_API_URL=https://api.openai.com/v1
+OPENAI_MODEL=gpt-4o
+OPENAI_API_VERSION=2024-06-01
+```
+
+### For Azure OpenAI:
+```
+AZURE_API_KEY=your-azure-key
+AZURE_API_BASE=https://your-resource.openai.azure.com
+AZURE_DEPLOYMENT_NAME=your-deployment
+AZURE_API_VERSION=2024-06-01
+```
+
+- Scarleet will auto-detect which provider to use based on your `.env`.
+- If neither is set, Scarleet will use your local SLM endpoint as a fallback.
+- Install dependencies for .env support:
+  ```sh
+  pip install python-dotenv
+  ```
+- The `openai` Python package is required (see `requirements.txt`).
+
+**Never commit your `.env` file or API keys to version control.**
+
+---
 
 ## Contributing & Support
 

@@ -1,0 +1,28 @@
+[project]
+name = "scarleet"
+version = "0.1.0"
+description = "Scarleet: CLI for LeetCode mastery and spaced repetition."
+authors = [
+    { name = "Scarowar" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "typer[all]",
+    "rich",
+    "toml",
+    "requests",
+    "openai",
+    "python-dotenv"
+]
+
+[project.scripts]
+scarleet = "scarleet.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

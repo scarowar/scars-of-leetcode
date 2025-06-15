@@ -12,9 +12,7 @@ model = "gemma:2b" # A lightweight, capable model
 
 # Prompt for generating the README content
 docgen_prompt_template = """
-You are an expert educator and algorithm tutor. Your task is to generate the content for a README.md file for the given LeetCode problem to support long-term retention and efficient revision.
-
-Use the reference implementation provided.
+You are an expert educator and algorithm tutor. Your task is to generate the content for a README.md file for the given LeetCode problem, using the provided Python solution and test case(s) as your only source of truth.
 
 # Problem Details
 - Title: {title}
@@ -28,58 +26,71 @@ Use the reference implementation provided.
 ```
 
 # Instructions
-Analyze the provided information and generate a response in a single, clean JSON object with the following keys. The content should be concise and memory-friendly.
+- Carefully analyze the provided solution code and test case(s). Your explanations must be directly based on the actual implementation and its logic.
+- For each field, avoid generic or template responses. Instead, explain the real reasoning, algorithm, and trade-offs present in the code.
+- Use the test case to illustrate how the solution works step by step, if helpful.
+- Output a single, valid JSON object with the following keys:
+  - "intuition": A single, clear sentence describing the core insight or "aha!" moment that makes the solution work, as implemented.
+  - "approach": A concise summary of the algorithm and data structures used, referencing the actual code logic.
+  - "complexity_time": The time complexity in O-notation, as implemented.
+  - "complexity_space": The space complexity in O-notation, as implemented.
+  - "notes": A single string containing a bulleted list (`- `) of the most valuable insights, edge cases, or tricky implementation details, all grounded in the provided code.
 
-- "intuition": A single, clear sentence describing the core "aha!" moment of the solution.
-- "approach": A brief summary of the algorithm used (e.g., two pointers, hashmap) and how it’s applied.
-- "complexity_time": The time complexity in O-notation (e.g., "O(n)").
-- "complexity_space": The space complexity in O-notation (e.g., "O(1)").
-- "notes": A single string containing a bulleted list (`- `) of the most valuable insights, edge cases, or tricky implementation details.
-
-Do not include any extra commentary or markdown formatting in your response. Abstract only the mental model needed to reconstruct the solution.
+Do not include any extra commentary, markdown, or information not present in the code or test case. Abstract only the mental model needed to reconstruct the solution as written.
 """
 
 flashcard_prompt_template = """
-You are an expert cognitive science and computer science educator. Your goal is to create high-quality, concise Anki flashcards that promote deep understanding and long-term retention of a LeetCode problem's solution.
+You are an expert educator specializing in creating effective Anki flashcards for deep learning and long-term retention.
 
-# Context
-- **Problem Title:** {title}
-- **My Explanation:**
-  - **Intuition:** {intuition}
-  - **Approach:** {approach}
-- **My Solution Code:**
-  ```python
-  {code}
-  ```
+Given the following LeetCode problem context, generate multiple Anki flashcards designed to help deeply understand and remember the problem-solving approach.
 
-# Instructions
-Based on all the provided context, generate exactly 5-7 flashcards that test different aspects of the solution. You MUST follow these requirements:
+# Problem Metadata
+- Problem ID: {problem_id}
+- Problem Title: {title}
+- Intuition: {intuition}
+- Approach: {approach}
+- Solution Code:
+```python
+{code}
+```
 
-1.  **Cloze Deletion Cards are REQUIRED:**
-    * You MUST create at least two (2) cloze deletion cards using the `{{c1::...}}` format. If you do not, your output will be rejected.
-    * Cloze cards must focus on hiding key concepts, algorithmic steps, or general principles (never code or variable names).
-    * Example cloze card (front): "The {{c1::two pointer}} technique is often used to solve problems involving arrays and searching for pairs."
-    * Example cloze card (front): "A {{c1::hash map}} allows for average-case O(1) lookups."
-    * Do NOT use code or variable names in cloze deletions.
+# Requirements
+- Cover these key areas:
+  - Core concepts and underlying theory
+  - Problem-solving patterns or algorithms involved
+  - Edge cases and constraints to watch for
+  - Step-by-step breakdown of how the solution works (and why)
+  - Common mistakes or misconceptions to avoid
+  - Analogies, metaphors, or intuitive explanations (when helpful)
 
-2.  **Variety is Key:**
-    * At least two (2) conceptual **Q&A** cards that ask "why" a certain approach, pattern, or technique was used.
-    * At least one (1) card about an **edge case**.
-    * You may include other types (e.g., true/false, multiple choice) if they help test conceptual understanding.
+- Apply evidence-based learning techniques such as:
+  - **Active recall**: phrase clear, focused questions on the front
+  - **Spaced repetition**: use concise, focused information per card
+  - **Cloze deletions** (e.g., {{c1::like this}}) for key ideas, steps, or terms
+  - **Elaboration**: encourage explanations over memorization
+  - **Interleaving**: if applicable, relate to similar problems or concepts
 
-3.  **No Code/Variable Memorization:**
-    * **Do NOT** create cards that require memorizing or recalling specific variable names, function names, or code implementation details from the provided solution.
-    * Focus on general patterns, algorithmic strategies, and problem-solving techniques that are transferable to other problems.
+- Use a **variety of card types**:
+  - Direct Q&A
+  - Fill-in-the-blank (use blanks like `___` in the front, answer in the back)
+  - True/False or multiple-choice style
+  - Cloze deletions for definitions, code logic, edge cases, etc.
+  - Explanation cards ("Explain why...", "Describe the reasoning behind...")
 
-4.  **Focus on the "Why" and Patterns:**
-    * Ask *why* a certain approach, data structure, or algorithm is used, and what general pattern it represents.
-    * Emphasize the reasoning behind the choice of technique, not the mechanics of the code.
-    * *Good Example:* "Why is a hash map a more efficient choice than a nested loop for the Two Sum problem?"
-    * *Bad Example:* "What does the variable 'i' represent in the code?"
+- Each card must have these fields:
+  - **front**: The question or prompt, beginning with the problem identifier in the format:
+    `[ProblemNumber] Problem Title - `
+    (e.g., `[0019] Remove Nth Node From End Of List - Why use a dummy node?`)
+  - **back**: The detailed answer or explanation, including cloze deletions where appropriate
+  - **tags**: A list of space-separated keywords inferred from the problem, e.g., `linked-list two-pointers edge-case`
+  - **card_type**: One of `"basic"` or `"cloze"` indicating the type of Anki card
 
-5.  **Atomic and Concise:** Each card must focus on one single, testable concept.
+- Output the result as a **single valid JSON object** with these top-level fields:
+  - `"problem_id"`: The problem number as string, e.g., `"0019"`
+  - `"problem_title"`: The problem title as string
+  - `"cards"`: A list of card objects as described above
 
-6.  **JSON Output:** You MUST return a single, clean, and valid JSON object with a "cards" key. The value should be an array of card objects, where each object has "front" and "back" keys. Do not include any other text or markdown.
+- Do NOT output any other commentary or markdown — output only the JSON content.
 """
 
 [anki]
