@@ -1,0 +1,19 @@
+{
+  "title": "3Sum",
+  "slug": "3sum",
+  "frontend_id": "15",
+  "url": "https://leetcode.com/problems/3sum/",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "lists": [
+    "NeetCode 150",
+    "Blind 75"
+  ],
+  "status": "new",
+  "solution_stats": null,
+  "last_updated": "2025-07-28T16:36:36.306350Z"
+}

@@ -2,4 +2,4 @@
 
 | # | Title | Status | Difficulty | Tags |
 |---|---|---|---|---|
-| 1 | [Two Sum](https://leetcode.com/problems/two-sum/) | documented | Easy | NeetCode 150, Blind 75 |
+| 15 | [3Sum](https://leetcode.com/problems/3sum/) | new | Medium | NeetCode 150, Blind 75 |
