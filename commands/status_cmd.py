@@ -35,12 +35,13 @@ def _gather_problem_data() -> list[dict]:
 
 
 def _generate_markdown_table(problems: list[dict]) -> str:
-    header = "| # | Title | Status | Difficulty | Tags |\n"
-    separator = "|---|---|---|---|---|\n"
+    header = "| # | Title | Status | Difficulty | Tags | Date |\n"
+    separator = "|---|---|---|---|---|---|\n"
     body = ""
     for p in problems:
         tags = ", ".join(p.get("lists", []))
-        body += f"| {p.get('frontend_id', '')} | [{p.get('title', '')}]({p.get('url', '')}) | {p.get('status', '')} | {p.get('difficulty', '')} | {tags} |\n"
+        date = p.get("last_updated", "")
+        body += f"| {p.get('frontend_id', '')} | [{p.get('title', '')}]({p.get('url', '')}) | {p.get('status', '')} | {p.get('difficulty', '')} | {tags} | {date} |\n"
 
     return f"# LeetCode Progress\n\n{header}{separator}{body}"
 
@@ -69,6 +70,7 @@ def status(
     table.add_column("Status", style="green")
     table.add_column("Difficulty", style="yellow")
     table.add_column("Tags", style="blue")
+    table.add_column("Date", style="white")
 
     difficulty_colors = {"Easy": "green", "Medium": "yellow", "Hard": "red"}
     status_colors = {"new": "yellow", "documented": "green", "archived": "dim"}
@@ -81,6 +83,7 @@ def status(
         status_style = status_colors.get(status, "white")
 
         tags = ", ".join(p.get("lists", []))
+        date = p.get("last_updated", "")
 
         table.add_row(
             str(p.get("frontend_id", "")),
@@ -88,6 +91,7 @@ def status(
             f"[{status_style}]{status}[/{status_style}]",
             f"[{diff_style}]{difficulty}[/{diff_style}]",
             tags,
+            date,
         )
 
     rich.print(table)

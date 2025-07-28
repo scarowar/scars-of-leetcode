@@ -3,7 +3,8 @@ from typing_extensions import Annotated
 import rich
 from rich.table import Table
 import json
-from scarleet.config import PROJECT_ROOT
+from datetime import datetime
+from ..config import PROJECT_ROOT
 
 app = typer.Typer(help="Displays a summary table of all problems.")
 
@@ -35,12 +36,21 @@ def _gather_problem_data() -> list[dict]:
 
 
 def _generate_markdown_table(problems: list[dict]) -> str:
-    header = "| # | Title | Status | Difficulty | Tags |\n"
-    separator = "|---|---|---|---|---|\n"
+    header = "| # | Title | Status | Difficulty | Tags | Date |\n"
+    separator = "|---|---|---|---|---|---|\n"
     body = ""
     for p in problems:
         tags = ", ".join(p.get("lists", []))
-        body += f"| {p.get('frontend_id', '')} | [{p.get('title', '')}]({p.get('url', '')}) | {p.get('status', '')} | {p.get('difficulty', '')} | {tags} |\n"
+        date_raw = p.get("last_updated", "")
+        date = ""
+        if date_raw:
+            try:
+                # Try parsing ISO format, fallback to just date
+                dt = datetime.fromisoformat(date_raw)
+                date = dt.strftime("%Y-%m-%d")
+            except Exception:
+                date = date_raw[:10] if len(date_raw) >= 10 else date_raw
+        body += f"| {p.get('frontend_id', '')} | [{p.get('title', '')}]({p.get('url', '')}) | {p.get('status', '')} | {p.get('difficulty', '')} | {tags} | {date} |\n"
 
     return f"# LeetCode Progress\n\n{header}{separator}{body}"
 
@@ -69,25 +79,35 @@ def status(
     table.add_column("Status", style="green")
     table.add_column("Difficulty", style="yellow")
     table.add_column("Tags", style="blue")
+    table.add_column("Date", style="white")
 
     difficulty_colors = {"Easy": "green", "Medium": "yellow", "Hard": "red"}
     status_colors = {"new": "yellow", "documented": "green", "archived": "dim"}
 
     for p in problems:
         difficulty = p.get("difficulty", "N/A")
-        status = p.get("status", "N/A")
+        status_val = p.get("status", "N/A")
 
         diff_style = difficulty_colors.get(difficulty, "white")
-        status_style = status_colors.get(status, "white")
+        status_style = status_colors.get(status_val, "white")
 
         tags = ", ".join(p.get("lists", []))
+        date_raw = p.get("last_updated", "")
+        date = ""
+        if date_raw:
+            try:
+                dt = datetime.fromisoformat(date_raw)
+                date = dt.strftime("%Y-%m-%d")
+            except Exception:
+                date = date_raw[:10] if len(date_raw) >= 10 else date_raw
 
         table.add_row(
             str(p.get("frontend_id", "")),
             f"[{p.get('title', '')}]({p.get('url', '')})",
-            f"[{status_style}]{status}[/{status_style}]",
+            f"[{status_style}]{status_val}[/{status_style}]",
             f"[{diff_style}]{difficulty}[/{diff_style}]",
             tags,
+            date,
         )
 
     rich.print(table)
