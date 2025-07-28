@@ -1,0 +1,97 @@
+[user]
+author = "Scarowar"
+
+[leetcode]
+# Base URL for the GraphQL API
+api_url = "https://leetcode.com/graphql"
+
+[slm]
+# API endpoint for the local SLM server (e.g., Ollama)
+endpoint = "http://localhost:11434/api/generate"
+model = "gemma:2b" # A lightweight, capable model
+
+# Prompt for generating the README content
+docgen_prompt_template = """
+You are an expert educator and algorithm tutor. Your task is to generate the content for a README.md file for the given LeetCode problem, using the provided Python solution and test case(s) as your only source of truth.
+
+# Problem Details
+- Title: {title}
+- LeetCode URL: {url}
+- Difficulty: {difficulty}
+- Description: {description}
+
+# Python Solution
+```python
+{code}
+```
+
+# Instructions
+- Carefully analyze the provided solution code and test case(s). Your explanations must be directly based on the actual implementation and its logic.
+- For each field, avoid generic or template responses. Instead, explain the real reasoning, algorithm, and trade-offs present in the code.
+- Use the test case to illustrate how the solution works step by step, if helpful.
+- Output a single, valid JSON object with the following keys:
+  - "intuition": A single, clear sentence describing the core insight or "aha!" moment that makes the solution work, as implemented.
+  - "approach": A concise summary of the algorithm and data structures used, referencing the actual code logic.
+  - "complexity_time": The time complexity in O-notation, as implemented.
+  - "complexity_space": The space complexity in O-notation, as implemented.
+  - "notes": A single string containing a bulleted list (`- `) of the most valuable insights, edge cases, or tricky implementation details, all grounded in the provided code.
+
+Do not include any extra commentary, markdown, or information not present in the code or test case. Abstract only the mental model needed to reconstruct the solution as written.
+"""
+
+flashcard_prompt_template = """
+You are an expert educator specializing in creating effective Anki flashcards for deep learning and long-term retention.
+
+Given the following LeetCode problem context, generate multiple Anki flashcards designed to help deeply understand and remember the problem-solving approach.
+
+# Problem Metadata
+- Problem ID: {problem_id}
+- Problem Title: {title}
+- Intuition: {intuition}
+- Approach: {approach}
+- Solution Code:
+```python
+{code}
+```
+
+# Requirements
+- Cover these key areas:
+  - Core concepts and underlying theory
+  - Problem-solving patterns or algorithms involved
+  - Edge cases and constraints to watch for
+  - Step-by-step breakdown of how the solution works (and why)
+  - Common mistakes or misconceptions to avoid
+  - Analogies, metaphors, or intuitive explanations (when helpful)
+
+- Apply evidence-based learning techniques such as:
+  - **Active recall**: phrase clear, focused questions on the front
+  - **Spaced repetition**: use concise, focused information per card
+  - **Cloze deletions** (e.g., {{c1::like this}}) for key ideas, steps, or terms
+  - **Elaboration**: encourage explanations over memorization
+  - **Interleaving**: if applicable, relate to similar problems or concepts
+
+- Use a **variety of card types**:
+  - Direct Q&A
+  - Fill-in-the-blank (use blanks like `___` in the front, answer in the back)
+  - True/False or multiple-choice style
+  - Cloze deletions for definitions, code logic, edge cases, etc.
+  - Explanation cards ("Explain why...", "Describe the reasoning behind...")
+
+- Each card must have these fields:
+  - **front**: The question or prompt, beginning with the problem identifier in the format:
+    `[ProblemNumber] Problem Title - `
+    (e.g., `[0019] Remove Nth Node From End Of List - Why use a dummy node?`)
+  - **back**: The detailed answer or explanation, including cloze deletions where appropriate
+  - **tags**: A list of space-separated keywords inferred from the problem, e.g., `linked-list two-pointers edge-case`
+  - **card_type**: One of `"basic"` or `"cloze"` indicating the type of Anki card
+
+- Output the result as a **single valid JSON object** with these top-level fields:
+  - `"problem_id"`: The problem number as string, e.g., `"0019"`
+  - `"problem_title"`: The problem title as string
+  - `"cards"`: A list of card objects as described above
+
+- Do NOT output any other commentary or markdown — output only the JSON content.
+"""
+
+[anki]
+deck_name = "Scars of LeetCode"

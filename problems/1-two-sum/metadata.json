@@ -1,0 +1,17 @@
+{
+  "title": "Two Sum",
+  "slug": "two-sum",
+  "frontend_id": "1",
+  "url": "https://leetcode.com/problems/two-sum/",
+  "difficulty": "Easy",
+  "tags": [
+    "Array",
+    "Hash Table"
+  ],
+  "lists": [
+    "NeetCode 150",
+    "Blind 75"
+  ],
+  "status": "documented",
+  "last_updated": "2025-06-14T19:54:27.246799Z"
+}

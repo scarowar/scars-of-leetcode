@@ -1,6 +1,3 @@
-
-
-
 # Scars of LeetCode
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
@@ -13,257 +10,177 @@
 
 > **Note:** This repository is a work in progress. Expect ongoing improvements and refinements!
 
----
-
 ## Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Usage](#usage)
-- [File/Folder Structure](#filefolder-structure)
-- [Best Practices](#best-practices)
-- [Code Quality: pre-commit Hooks](#code-quality-pre-commit-hooks)
-- [Contributing & Support](#contributing--support)
-- [License](#license)
-- [Citation](#citation)
-
----
+* [Overview](#overview)
+* [Features](#features)
+* [Installation](#installation)
+* [The Workflow: A Quick Start](#the-workflow-a-quick-start)
+* [Command Usage](#command-usage)
+* [Configuration](#configuration)
+* [File & Folder Structure](#file--folder-structure)
+* [Contributing & Support](#contributing--support)
+* [License](#license)
+* [OpenAI API Usage (Optional)](#openai-api-usage-optional)
 
 ## Overview
 
-Scars of LeetCode is an automation-driven workflow and knowledge base for mastering LeetCode problems. It helps you:
-- Organize and document solutions
-- Generate high-quality spaced-repetition flashcards
-- Track your progress
-- Integrate with Anki for efficient review
+**Scars of LeetCode** is a repository powered by **Scarleet**, a command-line tool designed to automate and streamline the entire workflow for mastering LeetCode problems. It helps you:
 
-This project is ideal for learners, interview preppers, and anyone who wants to build a deep, recallable understanding of algorithms and data structures.
+* Organize solutions in a structured way.
+* Automatically generate high-quality documentation for solved problems.
+* Create evidence-based, spaced-repetition flashcards for deep learning.
+* Track your progress with a dynamic summary table.
+* Seamlessly integrate with Anki for efficient review.
+
+This project is for anyone who wants to build a deep, recallable understanding of algorithms and data structures through a powerful, automated system.
 
 ## Features
 
-- Effortless problem management and documentation
-- Automated, evidence-based Anki flashcard generation
-- Seamless integration with Anki (including WSL support)
-- A single source of truth for all your LeetCode learning
-- Automated code quality, security, and dependency checks
-
----
+* **CLI-Driven Workflow**: Manage your entire practice from the command line.
+* **Automated Scaffolding**: Instantly create a structured directory for any LeetCode problem.
+* **AI-Powered Documentation**: Use a local language model to automatically generate high-quality READMEs explaining your solution's intuition, approach, and complexity.
+* **Automated Flashcard Generation**: Turn your solutions into effective Anki flashcards (both Q&A and Cloze deletion) with a single command.
+* **Intelligent Anki Integration**: Automatically detects your environment (including WSL) to connect to Anki and sync cards without manual configuration.
+* **Progress Tracking**: Generate a summary table of your progress at any time.
 
 ## Installation
 
 **Prerequisites:**
-- Python 3.8+
-- [pip](https://pip.pypa.io/en/stable/)
-- [pre-commit](https://pre-commit.com/) (for code quality)
-- [Anki](https://apps.ankiweb.net/) with [AnkiConnect](https://ankiweb.net/shared/info/2055492159) (for flashcard import)
 
-**Setup:**
-```sh
-git clone https://github.com/scarowar/scars-of-leetcode.git
-cd scars-of-leetcode
-pip install pre-commit
-pre-commit install
-# (Optional) Install other dependencies as needed
-```
+* Python 3.8+
+* [Ollama](https://ollama.com/) for running the local language model.
+* [Anki](https://apps.ankiweb.net/) desktop application with the [AnkiConnect](https://ankiweb.net/shared/info/2055492159) add-on installed.
 
----
+**Setup Steps:**
 
+1.  Clone the repository:
+    ```sh
+    git clone [https://github.com/scarowar/scars-of-leetcode.git](https://github.com/scarowar/scars-of-leetcode.git)
+    cd scars-of-leetcode
+    ```
+2.  Install the required Python packages:
+    ```sh
+    pip install "typer[all]" rich toml requests
+    ```
+3.  Run the interactive setup command. This will create your configuration file, check for Ollama, and download the recommended language model.
+    ```sh
+    python main.py setup
+    ```
 
-## What is This?
+## Installation (Local CLI)
 
-Scars of LeetCode is an automation-driven workflow for mastering LeetCode problems, generating high-quality spaced-repetition flashcards, and tracking your progress. It is designed for power users who want:
-
-- Effortless problem management and documentation
-- Automated, evidence-based Anki flashcard generation
-- Seamless integration with Anki (including WSL support)
-- A single source of truth for all your LeetCode learning
-
----
-
-
-
-## Usage
-
-### 1. Add a New Problem
-
-Use the `new-problem.sh` script to scaffold a new problem:
+You can install all dependencies with either:
 
 ```sh
-./new-problem.sh <problem_number> <problem_slug> <neetcode_150>
-# Example:
-./new-problem.sh 21 merge-two-sorted-lists true
+pip install -r requirements.txt
 ```
 
-- `<problem_number>`: The LeetCode problem number (e.g., 21)
-- `<problem_slug>`: The LeetCode slug (e.g., merge-two-sorted-lists)
-- `<neetcode_150>`: 'true' if part of NeetCode 150, else 'false'
-
-This creates a folder under `problems/` with:
-- A ready-to-edit `README.md` (with all required sections)
-- A starter `solution.py`
-- Automatic update of the main tracker in `problems/README.md`
-
-### 2. Document and Solve
-
-Edit the generated `README.md` and `solution.py` for your problem. Follow the template for concise, memory-friendly notes. The tracker will always reflect your current progress.
-
-### 3. Generate and Import Anki Flashcards
-
-For each problem, generate a `cards.json` (using the provided prompt and your README/solution). Place it in the problem's folder.
-
-To merge all cards and import them into Anki:
+or, if you prefer PEP 621/modern Python packaging:
 
 ```sh
-python3 scripts/create_import_anki_flashcards.py
+pip install .
 ```
 
----
+Both methods will install all required packages for Scarleet.
 
----
+See [INSTALL.md](INSTALL.md) for more details.
 
+## The Workflow: A Quick Start
 
-## Advanced: Automated Flashcard Generation
+The entire process is designed to be simple and flow naturally with your practice.
 
+1.  **Create a New Problem:**
+    ```sh
+    scarleet new <problem-slug>
+    # Example: scarleet new two-sum
+    ```
+2.  **Solve It:** Navigate to the new `problems/[id]-[slug]` directory and write your solution in `solution.py`.
+3.  **Generate Docs:** After your solution is accepted on LeetCode, let Scarleet document it for you.
+    ```sh
+    scarleet docgen <problem-slug>
+    ```
+4.  **Create Flashcards:** Turn your documented solution into study material.
+    ```sh
+    scarleet flashcards <problem-slug>
+    ```
+5.  **Track Your Progress:** View a summary of all your solved problems and update the master `README.md`.
+    ```sh
+    scarleet status --update-readme
+    ```
 
-### 3. Use the Prompts for Consistent, High-Quality Notes & Cards
+## Command Usage
 
-Prompts in `prompts/` ensure your documentation and flashcards are world-class:
+* **`setup`**: Initializes the project. Should be run once.
+* **`new <slug>`**: Scaffolds a new problem directory.
+* **`docgen <slug>`**: Generates a `README.md` for a problem using your solution and the local SLM.
+* **`flashcards <slug>`**: Generates Anki flashcards from your `README.md` and solution.
+* **`status`**: Displays a summary table of all problems. Use the `--update-readme` or `-u` flag to write this table to `problems/README.md`.
 
-- **`autofill-problem-readme.txt`**: Guidance for writing the perfect problem README, focusing on intuition, approach, complexity, and key notes. Use this as a reference or with LLMs to auto-generate your README.
-- **`create-update-anki-json.txt`**: The gold standard for generating Anki flashcards from your README and solution. Cards are designed for active recall, cloze deletions, and spaced repetition. Use this prompt with LLMs to generate a `cards.json` for each problem.
+## Configuration
 
+All configuration is managed in the `scarleet.toml` file, which is created by the `setup` command. Here you can change:
 
-### 4. Generate and Merge Anki Flashcards
+* The language model used (e.g., from `gemma:2b` to another Ollama model).
+* The prompts used for generating documentation and flashcards.
+* The name of your Anki deck.
 
-For each problem, generate a `cards.json` (using the above prompt and your README/solution). Place it in the problem's folder.
+## File & Folder Structure
 
-To merge all cards and import them into Anki:
-
-```bash
-python3 scripts/create_import_anki_flashcards.py
+```
+.
+├── scarleet.toml        # Global configuration for the tool
+├── main.py              # The CLI entrypoint
+├── commands/            # Logic for each CLI command
+├── core/                # Core logic for Anki, SLM, and LeetCode API
+├── problems/
+│   ├── ...              # One folder per problem, each with solution and docs
+│   └── README.md        # Auto-generated progress summary
+└── .scarleet/
+    └── lists/
+        ├── blind75.json         # Blind 75 list
+        └── neetcode150.json     # NeetCode 150 list
 ```
 
-This script will:
-- Merge all `cards.json` files into a master deck (`anki/scars-of-leetcode.json`)
-- Prevent duplicate cards
-- Add the `NeetCode150` tag automatically if the problem is part of NeetCode 150
-- Import all cards into your Anki deck via AnkiConnect
+
+## OpenAI or Azure OpenAI Usage (Optional)
+
+Scarleet can use either OpenAI or Azure OpenAI models (like GPT-4, GPT-3.5, etc.) for generating flashcards and documentation. To enable this, set the following environment variables in a `.env` file (which should NOT be committed to version control):
+
+### For OpenAI:
+```
+OPENAI_API_KEY=sk-...your-key...
+OPENAI_API_URL=https://api.openai.com/v1
+OPENAI_MODEL=gpt-4o
+OPENAI_API_VERSION=2024-06-01
+```
+
+### For Azure OpenAI:
+```
+AZURE_API_KEY=your-azure-key
+AZURE_API_BASE=https://your-resource.openai.azure.com
+AZURE_DEPLOYMENT_NAME=your-deployment
+AZURE_API_VERSION=2024-06-01
+```
+
+- Scarleet will auto-detect which provider to use based on your `.env`.
+- If neither is set, Scarleet will use your local SLM endpoint as a fallback.
+- Install dependencies for .env support:
+  ```sh
+  pip install python-dotenv
+  ```
+- The `openai` Python package is required (see `requirements.txt`).
+
+**Never commit your `.env` file or API keys to version control.**
 
 ---
-
-
-## AnkiConnect Setup (WSL & Linux)
-
-**Prerequisite:** You must have the [AnkiConnect](https://ankiweb.net/shared/info/2055492159) add-on installed in your Anki desktop app.
-
-**For WSL users:**
-1. Open Anki on Windows.
-2. Go to `Tools` → `Add-ons` → select AnkiConnect → `Config`.
-3. Change the config to:
-   ```json
-   { "webBindAddress": "0.0.0.0" }
-   ```
-4. Restart Anki.
-
-This allows the Python script in WSL to connect to Anki running on Windows.
-
----
-
-
-
-## File/Folder Structure
-
-- `problems/` — Each problem gets its own folder with `README.md`, `solution.py`, and `cards.json`
-- `scripts/create_import_anki_flashcards.py` — Merges and imports all flashcards into Anki
-- `anki/scars-of-leetcode.json` — Master deck (auto-generated)
-- `prompts/` — LLM prompts for README and flashcard generation
-- `new-problem.sh` — Script to scaffold new problems and update the tracker
-
----
-
-
-
-
-## Best Practices
-
-- Always use the provided prompts for README and flashcard generation for consistency and quality.
-- Run the Python script regularly to keep your Anki deck up to date.
-- Use the NeetCode 150 flag accurately for tagging and filtering.
-- Review the generated tracker in `problems/README.md` for your progress overview.
-
----
-
-
-
-## Code Quality: pre-commit Hooks
-
-This repository uses [pre-commit](https://pre-commit.com/) to ensure code quality, security, and documentation standards. Hooks are run automatically before every commit to help you ship your best work!
-
-**Checks include:**
-- Python formatting with [Black](https://github.com/psf/black)
-- Linting and autofix with [Ruff](https://github.com/astral-sh/ruff)
-- Security scanning with [Bandit](https://github.com/PyCQA/bandit) and [Gitleaks](https://github.com/gitleaks/gitleaks) (detects secrets!)
-- Markdown linting for `README.md` and docs
-- YAML, JSON, and whitespace checks
-- Various best-practice and safety checks
-
-**Setup:**
-1. Install pre-commit (once):
-   ```sh
-   pip install pre-commit
-   ```
-2. Install the hooks:
-   ```sh
-   pre-commit install
-   ```
-3. (Optional) Run on all files:
-   ```sh
-   pre-commit run --all-files
-   ```
-
-See `.pre-commit-config.yaml` for details and customization.
-
----
-
-
-
 
 ## Contributing & Support
 
-Contributions, suggestions, and improvements are welcome! Please open an issue or PR. By contributing, you agree that your contributions will be licensed under the GNU General Public License v3.0. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
----
-
-
+Contributions, suggestions, and improvements are welcome! Please open an issue or PR. By contributing, you agree that your contributions will be licensed under the GNU General Public License v3.0.
 
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
-
----
-
-## Citation
-
-If you use or reference this project in your research, blog, or elsewhere, please cite it as:
-
-```
-scarowar, "Scars of LeetCode", GitHub, https://github.com/scarowar/scars-of-leetcode
-```
-
----
-
-## Community & Support
-
-- Open an [issue](https://github.com/scarowar/scars-of-leetcode/issues) for help, suggestions, or bug reports
-- See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get involved
-- Please review our [Code of Conduct](CODE_OF_CONDUCT.md) and [Security Policy](SECURITY.md)
-
-
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
-
----
-
 
 **Happy grinding — and may your scars become your strength!**
