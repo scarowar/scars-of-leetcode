@@ -7,7 +7,11 @@ class TestSolution(unittest.TestCase):
         self.solution = Solution()
 
     def test_example_1(self):
-        self.assertEqual(self.solution.twoSum([2, 7, 11, 15], 9), [0, 1])
+        # Example from LeetCode problem description
+        # self.assertEqual(self.solution.your_method_name(params), expected_output)
+        pass
+
+    # Add more test cases for edge cases and other scenarios
 
 
 if __name__ == "__main__":
