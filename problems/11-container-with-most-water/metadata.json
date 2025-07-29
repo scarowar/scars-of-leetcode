@@ -1,0 +1,19 @@
+{
+  "title": "Container With Most Water",
+  "slug": "container-with-most-water",
+  "frontend_id": "11",
+  "url": "https://leetcode.com/problems/container-with-most-water/",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Two Pointers",
+    "Greedy"
+  ],
+  "lists": [
+    "NeetCode 150",
+    "Blind 75"
+  ],
+  "status": "new",
+  "solution_stats": null,
+  "last_updated": "2025-07-29T13:37:15.881754Z"
+}
